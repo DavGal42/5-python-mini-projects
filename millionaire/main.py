@@ -31,6 +31,7 @@ questions = [
     "What is the smallest prime number?2,1,3,5",
 ]
 
+
 def get_index():
     """
         Description: Choose 10 ranndom numbers and put them in to a list
@@ -42,8 +43,9 @@ def get_index():
         i = random.randint(0, len(questions) - 1)
         if i not in index:
             index.append(i)
-            
+
     return index
+
 
 def get_questions(ind):
     """
@@ -58,6 +60,7 @@ def get_questions(ind):
         quests.append(questions[i])
 
     return quests
+
 
 def get_questions_dict(quests):
     """
@@ -74,10 +77,11 @@ def get_questions_dict(quests):
 
     return questions_dict
 
+
 def on_button_click():
     """
         Description: When user enters his name the first windows is closed and second is opened
- 
+
         Returns: name of a user
     """
     global name
@@ -87,6 +91,7 @@ def on_button_click():
         open_second_window()
 
     return name
+
 
 def open_second_window():
     """
@@ -102,22 +107,26 @@ def open_second_window():
     second_window.title("Who Wants To Be A Millionaire?")
     second_window.configure(bg='#142666')
 
-    question_label = tk.Label(second_window, text="", fg='#8392c9', font=('Roboto', 10, 'bold'))
+    question_label = tk.Label(second_window, text="",
+                              fg='#8392c9', font=('Roboto', 10, 'bold'))
     question_label.pack(pady=20)
     question_label.configure(bg='#142666')
 
     answer_entry = tk.Entry(second_window, width=30)
     answer_entry.pack(pady=5)
 
-    submit_button = tk.Button(second_window, text="Submit", command=check_answer)
+    submit_button = tk.Button(
+        second_window, text="Submit", command=check_answer)
     submit_button.pack(pady=10)
     submit_button.configure(bg='#8392c9')
 
-    result_label = tk.Label(second_window, text="", fg='#8392c9', font=('Roboto', 10, 'bold'))
+    result_label = tk.Label(second_window, text="",
+                            fg='#8392c9', font=('Roboto', 10, 'bold'))
     result_label.pack(pady=20)
     result_label.configure(bg='#142666')
 
-    score_label = tk.Label(second_window, text="Score: 0", fg='#8392c9', font=('Roboto', 10, 'bold'))
+    score_label = tk.Label(second_window, text="Score: 0",
+                           fg='#8392c9', font=('Roboto', 10, 'bold'))
     score_label.pack(pady=10)
     score_label.configure(bg='#142666')
 
@@ -129,18 +138,20 @@ def open_second_window():
 
     second_window.mainloop()
 
+
 def check_answer():
     """
         Description: Checks the answer user has input
     """
     global current_correct_answer, count, current_index
     answer = answer_entry.get().strip()
-    
+
     if answer.lower() == current_correct_answer.lower():
         result_label.config(text="Correct!")
         count += 1
     else:
-        result_label.config(text=f"Wrong. The correct answer was: {current_correct_answer}")
+        result_label.config(
+            text=f"Wrong. The correct answer was: {current_correct_answer}")
 
     score_label.config(text=f"Score: {count}")
     current_index += 1
@@ -154,6 +165,7 @@ def check_answer():
         user_score = count
         save_score_to_file(name, user_score)
 
+
 def next_question():
     """
         Description: The function will run until the questions run out
@@ -166,12 +178,13 @@ def next_question():
     question_label.config(text=current_question)
     answer_entry.delete(0, tk.END)
 
+
 def save_score_to_file(name, score):
     """
         Description: writing and sorting each person`s name and score in file
     """
     try:
-        with open("5-mini-tasks/millionaire/top.txt", "r") as f:
+        with open("millionaire/top.txt", "r") as f:
             f = f.readlines()
     except FileNotFoundError:
         f = []
@@ -182,12 +195,13 @@ def save_score_to_file(name, score):
     for line in f:
         person = line.strip().split(": ")
         scores.append((person[0], int(person[1])))
-    
+
     scores.sort(key=lambda x: x[1], reverse=True)
 
-    with open("5-mini-tasks/millionaire/top.txt", "w") as file:
+    with open("millionaire/top.txt", "w") as file:
         for name, score in scores:
             file.write(f"{name}: {score}\n")
+
 
 root = tk.Tk()
 root.title("Name Input")
@@ -197,7 +211,8 @@ frame = tk.Frame(root)
 frame.pack(pady=20, padx=20)
 frame.configure(bg='#142666')
 
-label = tk.Label(frame, text="Enter your name", fg='#8392c9', font=('Roboto', 10, 'bold'))
+label = tk.Label(frame, text="Enter your name",
+                 fg='#8392c9', font=('Roboto', 10, 'bold'))
 label.pack(pady=1)
 label.configure(bg='#142666')
 
@@ -214,6 +229,7 @@ def main():
         The main function
     """
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()
