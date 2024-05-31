@@ -12,6 +12,7 @@ import enchant
 
 CHECKER = enchant.Dict("en_US")
 
+
 def get_fnames():
     """
         Description: There we use argparse to get names of the input and output files
@@ -27,6 +28,7 @@ def get_fnames():
 
     return args.input, args.output
 
+
 def get_content(fname):
     """
         Description: There we open the file and read it
@@ -38,6 +40,7 @@ def get_content(fname):
     with open(fname, 'r') as f:
         return f.read()
 
+
 def get_words(cnt):
     """
         Description: There we get each word in the file in list
@@ -48,6 +51,7 @@ def get_words(cnt):
     """
     words = cnt.split()
     return words
+
 
 def check_words(words):
     """
@@ -67,6 +71,7 @@ def check_words(words):
             words[i] = choose
     return words
 
+
 def write_in_file(fname, correct):
     """
         Description: There we open the file join the list of words and put them into the file
@@ -80,6 +85,7 @@ def write_in_file(fname, correct):
 
     return f
 
+
 def main():
     """
         The main function
@@ -91,6 +97,7 @@ def main():
     write_in_file(output_file, correct_txt)
     new_cnt = get_content(output_file)
     print(new_cnt)
+
 
 if __name__ == "__main__":
     main()

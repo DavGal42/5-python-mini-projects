@@ -1,8 +1,6 @@
 """
 Author: David Galstyan
-Description: This is a game “Who wants to be a millionaire”. The user enters the nickname,
-            then plays the game against 10 random questions.There are 3 helpsprovided during the game.
-            Each help can be used just once. At the end of the game, the user is displayed in the top players board.
+Description: This is a game “Who wants to be a millionaire”.
 """
 
 import tkinter as tk

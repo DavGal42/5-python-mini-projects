@@ -3,8 +3,8 @@
     Description: This is a simple game created with the language python and module pygame
 """
 
-import pygame
 import random
+import pygame
 
 pygame.init()
 
