@@ -15,7 +15,7 @@ questions = [
     "What is the freezing point of water in Celsius?0,32,-1,100",
     "What is the chemical symbol for gold?Au,Ag,Fe,Pb",
     "Which country is known as the Land of the Rising Sun?Japan,China,India,Armenia",
-    "What is the capital of Austria?Veinne,Moscow,Yerevan,Berlin",
+    "What is the capital of Austria?Vienna,Moscow,Yerevan,Berlin",
     "Who wrote 'Romeo and Juliet'?William Shakespeare,Mark Twain,Charles Dickens,Jane Austen",
     "What is the square root of 16?4,3,5,6",
     "What gas do plants absorb from the atmosphere?Carbon dioxide,Oxygen,Nitrogen,Hydrogen",
@@ -29,10 +29,16 @@ questions = [
     "What is the smallest prime number?2,1,3,5",
 ]
 
+current_correct_answer = ""
+questions_list = []
+count = 0
+current_index = 0
+name = ""
+
 
 def get_index():
     """
-        Description: Choose 10 ranndom numbers and put them in to a list
+        Description: Choose 10 random numbers and put them into a list
 
         Returns: List of numbers
     """
@@ -47,11 +53,11 @@ def get_index():
 
 def get_questions(ind):
     """
-        Description: create list of questions using random indexes
+        Description: Create list of questions using random indexes
 
         Parameters: indexes (10 random numbers)
 
-        Returns: list of questions
+        Returns: List of questions
     """
     quests = []
     for i in ind:
@@ -62,11 +68,11 @@ def get_questions(ind):
 
 def get_questions_dict(quests):
     """
-        Description: seperate questions from answers and put them into a dict
+        Description: Separate questions from answers and put them into a dict
 
         Parameters: list of questions
 
-        Returns: dictionary of questions
+        Returns: Dictionary of questions
     """
     questions_dict = {}
     for question in quests:
@@ -78,9 +84,9 @@ def get_questions_dict(quests):
 
 def on_button_click():
     """
-        Description: When user enters his name the first windows is closed and second is opened
+        Description: When user enters their name, the first window is closed and the second is opened
 
-        Returns: name of a user
+        Returns: Name of the user
     """
     global name
     name = entry.get()
@@ -141,7 +147,7 @@ def check_answer():
     """
         Description: Checks the answer user has input
     """
-    global current_correct_answer, count, current_index
+    global count, current_index, current_correct_answer
     answer = answer_entry.get().strip()
 
     if answer.lower() == current_correct_answer.lower():
@@ -168,7 +174,7 @@ def next_question():
     """
         Description: The function will run until the questions run out
     """
-    global current_question, current_correct_answer, current_index
+    global current_correct_answer, current_index
     q, a = questions_list[current_index]
     current_question = q
     current_correct_answer = a[0]
@@ -177,26 +183,26 @@ def next_question():
     answer_entry.delete(0, tk.END)
 
 
-def save_score_to_file(name, score):
+def save_score_to_file(user_name, user_score):
     """
-        Description: writing and sorting each person`s name and score in file
+        Description: Writing and sorting each person’s name and score in a file
     """
     try:
-        with open("millionaire/top.txt", "r") as f:
-            f = f.readlines()
+        with open("millionaire/top.txt", "r", encoding="utf-8") as f:
+            lines = f.readlines()
     except FileNotFoundError:
-        f = []
+        lines = []
 
-    f.append(f"{name}: {score}\n")
+    lines.append(f"{user_name}: {user_score}\n")
 
     scores = []
-    for line in f:
+    for line in lines:
         person = line.strip().split(": ")
         scores.append((person[0], int(person[1])))
 
     scores.sort(key=lambda x: x[1], reverse=True)
 
-    with open("millionaire/top.txt", "w") as file:
+    with open("millionaire/top.txt", "w", encoding="utf-8") as file:
         for name, score in scores:
             file.write(f"{name}: {score}\n")
 

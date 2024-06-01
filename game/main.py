@@ -8,34 +8,34 @@ import pygame
 
 pygame.init()
 
-game_screen = pygame.display.set_mode((253, 450))
+GAME_SCREEN = pygame.display.set_mode((253, 450))
 pygame.display.set_caption('Adventure Game')
 
-icon = pygame.image.load('game/imgs/joystick.png')
-pygame.display.set_icon(icon)
-background_image = pygame.image.load('game/imgs/background.jpg')
+ICON = pygame.image.load('game/imgs/joystick.png')
+pygame.display.set_icon(ICON)
+BACKGROUND_IMAGE = pygame.image.load('game/imgs/background.jpg')
 
-basket = pygame.image.load('game/imgs/basket.png')
-basket_speed = 0.5
-basket_x = 100
-basket_y = 412
+BASKET = pygame.image.load('game/imgs/basket.png')
+BASKET_SPEED = 0.5
+BASKET_X = 100
+BASKET_Y = 412
 
-coin = pygame.image.load('game/imgs/coin.png')
-bomb = pygame.image.load('game/imgs/bomb.png')
-falling_speed = 0.5
+COIN = pygame.image.load('game/imgs/coin.png')
+BOMB = pygame.image.load('game/imgs/bomb.png')
+FALLING_SPEED = 0.5
 
-label1 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 40)
-label2 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 20)
-lose_label = label1.render('You Lose!', False, 'White')
-author = label2.render('Created by: David Galstyan', False, 'White')
-restart_label = label1.render('Play Again', False, (115, 132, 148))
-restart_label_rect = restart_label.get_rect(topleft=(50, 200))
+LABEL1 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 40)
+LABEL2 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 20)
+LOSE_LABEL = LABEL1.render('You Lose!', False, 'White')
+AUTHOR = LABEL2.render('Created by: David Galstyan', False, 'White')
+RESTART_LABEL = LABEL1.render('Play Again', False, (115, 132, 148))
+RESTART_LABEL_RECT = RESTART_LABEL.get_rect(topleft=(50, 200))
 
-sound = pygame.mixer.Sound('game/sounds/bg-sound.mp3')
-sound.play()
+SOUND = pygame.mixer.Sound('game/sounds/bg-sound.mp3')
+SOUND.play()
 
-game_active = True
-score = 0
+GAME_ACTIVE = True
+SCORE = 0
 
 
 class FallingObject:
@@ -59,70 +59,70 @@ falling_objects = []
 
 def spawn_falling_object():
     if random.randint(0, 1) == 0:
-        falling_objects.append(FallingObject(coin, random.randint(
-            0, 253 - coin.get_width()), 0, falling_speed))
+        falling_objects.append(FallingObject(COIN, random.randint(
+            0, 253 - COIN.get_width()), 0, FALLING_SPEED))
     else:
-        falling_objects.append(FallingObject(bomb, random.randint(
-            0, 253 - bomb.get_width()), 0, falling_speed))
+        falling_objects.append(FallingObject(BOMB, random.randint(
+            0, 253 - BOMB.get_width()), 0, FALLING_SPEED))
 
 
 spawn_event = pygame.USEREVENT + 1
 pygame.time.set_timer(spawn_event, 1500)
 
-running = True
+RUNNING = True
 
-while running:
-    game_screen.blit(background_image, (0, 0))
+while RUNNING:
+    GAME_SCREEN.blit(BACKGROUND_IMAGE, (0, 0))
 
-    if game_active:
+    if GAME_ACTIVE:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            basket_x -= basket_speed
+            BASKET_X -= BASKET_SPEED
         if keys[pygame.K_RIGHT]:
-            basket_x += basket_speed
+            BASKET_X += BASKET_SPEED
 
-        basket_x = max(0, min(basket_x, 253 - basket.get_width()))
+        BASKET_X = max(0, min(BASKET_X, 253 - BASKET.get_width()))
 
-        game_screen.blit(basket, (basket_x, basket_y))
+        GAME_SCREEN.blit(BASKET, (BASKET_X, BASKET_Y))
 
         for obj in falling_objects[:]:
             obj.update()
-            obj.draw(game_screen)
+            obj.draw(GAME_SCREEN)
 
-            if obj.rect.colliderect(basket.get_rect(topleft=(basket_x, basket_y))):
+            if obj.rect.colliderect(BASKET.get_rect(topleft=(BASKET_X, BASKET_Y))):
                 falling_objects.remove(obj)
-                if obj.image == bomb:
-                    game_active = False
-                elif obj.image == coin:
-                    score += 1
+                if obj.image == BOMB:
+                    GAME_ACTIVE = False
+                elif obj.image == COIN:
+                    SCORE += 1
 
             elif obj.y > 450:
                 falling_objects.remove(obj)
 
-        score_text = label2.render(f'Score: {score}', False, 'White')
-        game_screen.blit(score_text, (10, 10))
+        SCORE_TEXT = LABEL2.render(f'Score: {SCORE}', False, 'White')
+        GAME_SCREEN.blit(SCORE_TEXT, (10, 10))
 
     else:
-        game_screen.fill((87, 88, 89))
-        game_screen.blit(author, (20, 320))
-        game_screen.blit(lose_label, (50, 100))
-        game_screen.blit(restart_label, restart_label_rect)
+        GAME_SCREEN.fill((87, 88, 89))
+        GAME_SCREEN.blit(AUTHOR, (20, 320))
+        GAME_SCREEN.blit(LOSE_LABEL, (50, 100))
+        GAME_SCREEN.blit(RESTART_LABEL, RESTART_LABEL_RECT)
 
-        final_score_text = label2.render(
-            f'Final Score: {score}', False, 'White')
-        game_screen.blit(final_score_text, (60, 150))
+        FINAL_SCORE_TEXT = LABEL2.render(
+            f'Final Score: {SCORE}', False, 'White')
+        GAME_SCREEN.blit(FINAL_SCORE_TEXT, (60, 150))
 
-        mouse = pygame.mouse.get_pos()
-        if restart_label_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
-            game_active = True
+        MOUSE = pygame.mouse.get_pos()
+        if RESTART_LABEL_RECT.collidepoint(MOUSE) and pygame.mouse.get_pressed()[0]:
+            GAME_ACTIVE = True
             falling_objects.clear()
-            score = 0
+            SCORE = 0
 
     pygame.display.update()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            RUNNING = False
             pygame.quit()
-        elif event.type == spawn_event and game_active:
+        elif event.type == spawn_event and GAME_ACTIVE:
             spawn_falling_object()
