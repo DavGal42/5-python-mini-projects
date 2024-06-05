@@ -16,13 +16,13 @@ pygame.display.set_icon(ICON)
 BACKGROUND_IMAGE = pygame.image.load('game/imgs/background.jpg')
 
 BASKET = pygame.image.load('game/imgs/basket.png')
-BASKET_SPEED = 0.5
+BASKET_SPEED = 0.1
 BASKET_X = 100
 BASKET_Y = 412
 
 COIN = pygame.image.load('game/imgs/coin.png')
 BOMB = pygame.image.load('game/imgs/bomb.png')
-FALLING_SPEED = 0.5
+FALLING_SPEED = 0.08
 
 LABEL1 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 40)
 LABEL2 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 20)
