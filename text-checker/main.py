@@ -10,8 +10,7 @@ The script takes 2 arguments: “-input” for the input file, “-output” for
 import argparse
 import enchant
 
-CHECKER = enchant.Dict("en_US")
-
+CHECKER = enchant.DictWithPWL("en_US")
 
 def get_fnames():
     """

@@ -22,7 +22,7 @@ BASKET_Y = 412
 
 COIN = pygame.image.load('game/imgs/coin.png')
 BOMB = pygame.image.load('game/imgs/bomb.png')
-FALLING_SPEED = 0.08
+FALLING_SPEED = 0.2
 
 LABEL1 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 40)
 LABEL2 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 20)
