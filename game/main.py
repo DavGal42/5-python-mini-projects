@@ -39,7 +39,21 @@ SCORE = 0
 
 
 class FallingObject:
+    """
+        Description: There we open the file and read it
+
+        Parameters: name of the file
+
+        Returns: content of the file
+    """
     def __init__(self, image, x, y, speed):
+        """
+            Description: There we open the file and read it
+
+            Parameters: name of the file
+
+            Returns: content of the file
+        """
         self.image = image
         self.x = x
         self.y = y
@@ -47,10 +61,24 @@ class FallingObject:
         self.rect = self.image.get_rect(topleft=(x, y))
 
     def update(self):
+        """
+            Description: There we open the file and read it
+
+            Parameters: name of the file
+
+            Returns: content of the file
+        """
         self.y += self.speed
         self.rect.topleft = (self.x, self.y)
 
     def draw(self, screen):
+        """
+            Description: There we open the file and read it
+
+            Parameters: name of the file
+
+            Returns: content of the file
+        """
         screen.blit(self.image, (self.x, self.y))
 
 
@@ -58,6 +86,13 @@ falling_objects = []
 
 
 def spawn_falling_object():
+    """
+        Description: There we open the file and read it
+
+        Parameters: name of the file
+
+        Returns: content of the file
+    """
     if random.randint(0, 1) == 0:
         falling_objects.append(FallingObject(COIN, random.randint(
             0, 253 - COIN.get_width()), 0, FALLING_SPEED))

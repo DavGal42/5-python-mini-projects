@@ -14,7 +14,7 @@ questions = [
     "What is the main ingredient in guacamole?Avocado,Tomato,Cucumber,Carrot",
     "What is the freezing point of water in Celsius?0,32,-1,100",
     "What is the chemical symbol for gold?Au,Ag,Fe,Pb",
-    "Which country is known as the Land of the Rising Sun?Japan,China,India,Armenia",
+    "Which COUNTry is known as the Land of the Rising Sun?Japan,China,India,Armenia",
     "What is the capital of Austria?Vienna,Moscow,Yerevan,Berlin",
     "Who wrote 'Romeo and Juliet'?William Shakespeare,Mark Twain,Charles Dickens,Jane Austen",
     "What is the square root of 16?4,3,5,6",
@@ -29,10 +29,10 @@ questions = [
     "What is the smallest prime number?2,1,3,5",
 ]
 
-current_correct_answer = ""
+CURRENT_CORRECT_ANSWER = ""
 questions_list = []
-count = 0
-current_index = 0
+COUNT = 0
+CURRENT_INDEX = 0
 name = ""
 
 
@@ -84,9 +84,10 @@ def get_questions_dict(quests):
 
 def on_button_click():
     """
-        Description: When user enters their name, the first window is closed and the second is opened
+        Description: When user enters their name,
+        the first window is closed and the second is opened
 
-        Returns: Name of the user
+        Returns: name of the user
     """
     global name
     name = entry.get()
@@ -101,7 +102,9 @@ def open_second_window():
     """
         Description: Functionality of second window
     """
-    global question_label, answer_entry, result_label, score_label, submit_button, questions_list, count, current_index
+    global question_label, answer_entry, result_label, score_label, \
+        submit_button, questions_list, COUNT, CURRENT_INDEX
+
     index = get_index()
     questions = get_questions(index)
     questions_dict = get_questions_dict(questions)
@@ -136,8 +139,8 @@ def open_second_window():
 
     questions_list = list(questions_dict.items())
     random.shuffle(questions_list)
-    count = 0
-    current_index = 0
+    COUNT = 0
+    CURRENT_INDEX = 0
     next_question()
 
     second_window.mainloop()
@@ -147,26 +150,26 @@ def check_answer():
     """
         Description: Checks the answer user has input
     """
-    global count, current_index, current_correct_answer
+    global COUNT, CURRENT_INDEX, CURRENT_CORRECT_ANSWER
     answer = answer_entry.get().strip()
 
-    if answer.lower() == current_correct_answer.lower():
+    if answer.lower() == CURRENT_CORRECT_ANSWER.lower():
         result_label.config(text="Correct!")
-        count += 1
+        COUNT += 1
     else:
         result_label.config(
-            text=f"Wrong. The correct answer was: {current_correct_answer}")
+            text=f"Wrong. The correct answer was: {CURRENT_CORRECT_ANSWER}")
 
-    score_label.config(text=f"Score: {count}")
-    current_index += 1
+    score_label.config(text=f"Score: {COUNT}")
+    CURRENT_INDEX += 1
 
-    if current_index < len(questions_list):
+    if CURRENT_INDEX < len(questions_list):
         next_question()
     else:
-        result_label.config(text=f"You answered {count} questions correctly.")
+        result_label.config(text=f"You answered {COUNT} questions correctly.")
         answer_entry.config(state=tk.DISABLED)
         submit_button.config(state=tk.DISABLED)
-        user_score = count
+        user_score = COUNT
         save_score_to_file(name, user_score)
 
 
@@ -174,10 +177,10 @@ def next_question():
     """
         Description: The function will run until the questions run out
     """
-    global current_correct_answer, current_index
-    q, a = questions_list[current_index]
+    global CURRENT_CORRECT_ANSWER, CURRENT_INDEX
+    q, a = questions_list[CURRENT_INDEX]
     current_question = q
-    current_correct_answer = a[0]
+    CURRENT_CORRECT_ANSWER = a[0]
     random.shuffle(a)
     question_label.config(text=current_question)
     answer_entry.delete(0, tk.END)
@@ -208,7 +211,7 @@ def save_score_to_file(user_name, user_score):
 
 
 root = tk.Tk()
-root.title("Name Input")
+root.title("name Input")
 root.configure(bg='#142666')
 
 frame = tk.Frame(root)
