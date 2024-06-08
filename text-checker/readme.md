@@ -1,6 +1,6 @@
 Make virtual environment
 
-<!-- python -m venv taskn(name of the venv) -->
+<!-- python -m venv task4 -->
 
 
 Activate venv

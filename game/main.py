@@ -11,27 +11,27 @@ pygame.init()
 GAME_SCREEN = pygame.display.set_mode((253, 450))
 pygame.display.set_caption('Adventure Game')
 
-ICON = pygame.image.load('game/imgs/joystick.png')
+ICON = pygame.image.load('imgs/joystick.png')
 pygame.display.set_icon(ICON)
-BACKGROUND_IMAGE = pygame.image.load('game/imgs/background.jpg')
+BACKGROUND_IMAGE = pygame.image.load('imgs/background.jpg')
 
-BASKET = pygame.image.load('game/imgs/basket.png')
+BASKET = pygame.image.load('imgs/basket.png')
 BASKET_SPEED = 0.1
 BASKET_X = 100
 BASKET_Y = 412
 
-COIN = pygame.image.load('game/imgs/coin.png')
-BOMB = pygame.image.load('game/imgs/bomb.png')
+COIN = pygame.image.load('imgs/coin.png')
+BOMB = pygame.image.load('imgs/bomb.png')
 FALLING_SPEED = 0.2
 
-LABEL1 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 40)
-LABEL2 = pygame.font.Font('game/fonts/Jersey15-Regular.ttf', 20)
+LABEL1 = pygame.font.Font('fonts/Jersey15-Regular.ttf', 40)
+LABEL2 = pygame.font.Font('fonts/Jersey15-Regular.ttf', 20)
 LOSE_LABEL = LABEL1.render('You Lose!', False, 'White')
 AUTHOR = LABEL2.render('Created by: David Galstyan', False, 'White')
 RESTART_LABEL = LABEL1.render('Play Again', False, (115, 132, 148))
 RESTART_LABEL_RECT = RESTART_LABEL.get_rect(topleft=(50, 200))
 
-SOUND = pygame.mixer.Sound('game/sounds/bg-sound.mp3')
+SOUND = pygame.mixer.Sound('sounds/bg-sound.mp3')
 SOUND.play()
 
 GAME_ACTIVE = True
