@@ -29,15 +29,9 @@ questions = [
     "What is the smallest prime number?2,1,3,5",
 ]
 
-CURRENT_CORRECT_ANSWER = ""
-questions_list = []
-COUNT = 0
-CURRENT_INDEX = 0
-name = ""
-
 
 def get_index():
-    """
+    """`
         Description: Choose 10 random numbers and put them into a list
 
         Returns: List of numbers
@@ -114,26 +108,22 @@ def open_second_window():
     second_window.title("Who Wants To Be A Millionaire?")
     second_window.configure(bg='#142666')
 
-    question_label = tk.Label(second_window, text="",
-                              fg='#8392c9', font=('Roboto', 10, 'bold'))
+    question_label = tk.Label(second_window, text="",fg='#8392c9', font=('Roboto', 10, 'bold'))
     question_label.pack(pady=20)
     question_label.configure(bg='#142666')
 
     answer_entry = tk.Entry(second_window, width=30)
     answer_entry.pack(pady=5)
 
-    submit_button = tk.Button(
-        second_window, text="Submit", command=check_answer)
+    submit_button = tk.Button(second_window, text="Submit", command=check_answer)
     submit_button.pack(pady=10)
     submit_button.configure(bg='#8392c9')
 
-    result_label = tk.Label(second_window, text="",
-                            fg='#8392c9', font=('Roboto', 10, 'bold'))
+    result_label = tk.Label(second_window, text="",fg='#8392c9', font=('Roboto', 10, 'bold'))
     result_label.pack(pady=20)
     result_label.configure(bg='#142666')
 
-    score_label = tk.Label(second_window, text="Score: 0",
-                           fg='#8392c9', font=('Roboto', 10, 'bold'))
+    score_label = tk.Label(second_window, text="Score: 0",fg='#8392c9', font=('Roboto', 10, 'bold'))
     score_label.pack(pady=10)
     score_label.configure(bg='#142666')
 
@@ -188,26 +178,22 @@ def next_question():
 
 def save_score_to_file(user_name, user_score):
     """
-        Description: Writing and sorting each person’s name and score in a file
+    Description: Writing and sorting each person’s name and score in a file
     """
+
     try:
-        with open("millionaire/top.txt", "r", encoding="utf-8") as f:
-            lines = f.readlines()
+        with open("top.txt", "r", encoding="utf-8") as f:
+            scores = [line.strip().split(": ") for line in f]
+            scores = [(name, int(score)) for name, score in scores]
     except FileNotFoundError:
-        lines = []
+        scores = []
 
-    lines.append(f"{user_name}: {user_score}\n")
-
-    scores = []
-    for line in lines:
-        person = line.strip().split(": ")
-        scores.append((person[0], int(person[1])))
-
+    scores.append((user_name, user_score))
     scores.sort(key=lambda x: x[1], reverse=True)
 
-    with open("millionaire/top.txt", "w", encoding="utf-8") as file:
+    with open("top.txt", "w", encoding="utf-8") as f:
         for name, score in scores:
-            file.write(f"{name}: {score}\n")
+            f.write(f"{name}: {score}\n")
 
 
 root = tk.Tk()
@@ -215,11 +201,10 @@ root.title("name Input")
 root.configure(bg='#142666')
 
 frame = tk.Frame(root)
-frame.pack(pady=20, padx=20)
+frame.pack(pady=30, padx=30)
 frame.configure(bg='#142666')
 
-label = tk.Label(frame, text="Enter your name",
-                 fg='#8392c9', font=('Roboto', 10, 'bold'))
+label = tk.Label(frame, text="Enter your name",fg='#8392c9', font=('Roboto', 10, 'bold'))
 label.pack(pady=1)
 label.configure(bg='#142666')
 

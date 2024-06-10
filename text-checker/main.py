@@ -57,21 +57,21 @@ def check_words(words):
         if v not in spell:
             correct = list(spell.candidates(v))
             print(f'Wrong word: {words[i]}')
-            print('It seems that your word is not correct. Choose from these:')
+            print('Your word is not correct. Choose from these:')
             print(correct)
             choose = input('Choose: ')
             words[i] = choose
     return words
 
 
-def write_in_file(fname, correct):
+def write_in_file(fname, correct_str):
     """
         Open the file, join the list of words, and put them into the file
         Parameters: filename and correct words
         Returns: file with corrected text
     """
     with open(fname, 'w', encoding='utf-8') as f:
-        f.write(' '.join(correct))
+        f.write(' '.join(correct_str))
 
 
 def main():
