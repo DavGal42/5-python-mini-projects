@@ -1,15 +1,4 @@
 import requests
-import time
-
-
-'''
-    Author: David Galstyan
-
-    Date: 28.04.2024
-
-    Description: This code returns the costs of cryptocurrencies and updates costs every 5s
-'''
-
 
 URL = 'https://api.coincap.io/v2/assets'
 
@@ -68,17 +57,13 @@ def get_each_crypto():
             print('Total_Volume:', crypto['total_volume'])
             print('Price 24h:', crypto['price_24h'])
             print()
-        time.sleep(5)
-
 
 def main():
     '''
         The main function
     '''
+    data = get_data_from_url(URL)
+    print(data['data'][:10])
 
-    # get_each_crypto()
-
-data = get_data_from_url(URL)
-print(data['data'][:10])
 if __name__ == '__main__':
     main()
