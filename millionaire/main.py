@@ -18,7 +18,7 @@ questions = [
     "What is the main ingredient in guacamole?Avocado,Tomato,Cucumber,Carrot",
     "What is the freezing point of water in Celsius?0,32,-1,100",
     "What is the chemical symbol for gold?Au,Ag,Fe,Pb",
-    "Which COUNTry is known as the Land of the Rising Sun?Japan,China,India,Armenia",
+    "Which country is known as the Land of the Rising Sun?Japan,China,India,Armenia",
     "What is the capital of Austria?Vienna,Moscow,Yerevan,Berlin",
     "Who wrote 'Romeo and Juliet'?William Shakespeare,Mark Twain,Charles Dickens,Jane Austen",
     "What is the square root of 16?4,3,5,6",
@@ -95,7 +95,6 @@ def on_button_click():
 
     return name
 
-
 def open_second_window():
     """
         Description: Functionality of second window
@@ -108,11 +107,11 @@ def open_second_window():
     questions_dict = get_questions_dict(questions)
 
     second_window = tk.Tk()
-    second_window.geometry('400x300')
+    second_window.geometry('500x300')
     second_window.title("Who Wants To Be A Millionaire?")
     second_window.configure(bg='#142666')
 
-    question_label = tk.Label(second_window, text="",fg='#8392c9', font=('Roboto', 10, 'bold'))
+    question_label = tk.Label(second_window, text="", fg='#8392c9', font=('Roboto', 10, 'bold'))
     question_label.pack(pady=20)
     question_label.configure(bg='#142666')
 
@@ -123,13 +122,25 @@ def open_second_window():
     submit_button.pack(pady=10)
     submit_button.configure(bg='#8392c9')
 
-    result_label = tk.Label(second_window, text="",fg='#8392c9', font=('Roboto', 10, 'bold'))
+    result_label = tk.Label(second_window, text="", fg='#8392c9', font=('Roboto', 10, 'bold'))
     result_label.pack(pady=20)
     result_label.configure(bg='#142666')
 
-    score_label = tk.Label(second_window, text="Score: 0",fg='#8392c9', font=('Roboto', 10, 'bold'))
+    score_label = tk.Label(second_window, text="Score: 0", fg='#8392c9', font=('Roboto', 10, 'bold'))
     score_label.pack(pady=10)
     score_label.configure(bg='#142666')
+
+    button_frame = tk.Frame(second_window, bg='#142666')
+    button_frame.pack(pady=10)
+
+    help_button1 = tk.Button(button_frame, text='1', bg='#8392c9')
+    help_button1.pack(side=tk.LEFT, padx=5)
+    
+    help_button2 = tk.Button(button_frame, text='2', bg='#8392c9')
+    help_button2.pack(side=tk.LEFT, padx=5)
+
+    help_button3 = tk.Button(button_frame, text='3', bg='#8392c9')
+    help_button3.pack(side=tk.LEFT, padx=5)
 
     questions_list = list(questions_dict.items())
     random.shuffle(questions_list)
@@ -138,7 +149,6 @@ def open_second_window():
     next_question()
 
     second_window.mainloop()
-
 
 def check_answer():
     """
@@ -151,8 +161,7 @@ def check_answer():
         result_label.config(text="Correct!")
         COUNT += 1
     else:
-        result_label.config(
-            text=f"Wrong. The correct answer was: {CURRENT_CORRECT_ANSWER}")
+        result_label.config(text=f"Wrong. The correct answer was: {CURRENT_CORRECT_ANSWER}")
 
     score_label.config(text=f"Score: {COUNT}")
     CURRENT_INDEX += 1
@@ -176,13 +185,13 @@ def next_question():
     current_question = q
     CURRENT_CORRECT_ANSWER = a[0]
     random.shuffle(a)
-    question_label.config(text=current_question)
+    question_label.config(text=f"{current_question} \n {', '.join(a)}")
     answer_entry.delete(0, tk.END)
 
 
 def save_score_to_file(user_name, user_score):
     """
-    Description: Writing and sorting each person’s name and score in a file
+    Description: Writing and sorting each person's name and score in a file
     """
 
     try:
@@ -201,14 +210,15 @@ def save_score_to_file(user_name, user_score):
 
 
 root = tk.Tk()
-root.title("name Input")
+root.title("Name Input")
 root.configure(bg='#142666')
+root.geometry('250x150')
 
 frame = tk.Frame(root)
 frame.pack(pady=30, padx=30)
 frame.configure(bg='#142666')
 
-label = tk.Label(frame, text="Enter your name",fg='#8392c9', font=('Roboto', 10, 'bold'))
+label = tk.Label(frame, text="Enter your name", fg='#8392c9', font=('Roboto', 10, 'bold'))
 label.pack(pady=1)
 label.configure(bg='#142666')
 

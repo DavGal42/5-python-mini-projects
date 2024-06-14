@@ -1,10 +1,10 @@
 """
-Author: David 
+Author: David Galstyan
 
 Description: A Desktop app which allows the user to upload a file that contains
 the symbols of the cryptocurrencies. It generates an excel file with the detailed
 information of that cryptocurrencies (Name, Symbol, Current price, Market Cap, Total Volume,
-Price Change for 24 hours.). The user is able to name the excel file from the desktop
+Price Change for 24 hours, etc.). The user is able to name the excel file from the desktop
 app window and choose the directory where it should be stored (by default: the Downloads
 directory).
 """
@@ -44,7 +44,7 @@ def create_first_window():
     """
     first_window = tk.Tk()
     first_window.title("Download Tickers")
-    first_window.geometry("600x400")
+    first_window.geometry("400x200")
     first_window.configure(bg='#1a2445')
 
     button = tk.Button(first_window, text="Download", bg='yellow', fg='#1a2445',\
@@ -64,8 +64,17 @@ def create_second_window():
     """
     second_window = tk.Tk()
     second_window.title("Download XLSX File")
-    second_window.geometry("300x200")
+    second_window.geometry("500x250")
     second_window.configure(bg='#1a2445')
+
+    label = tk.Label(second_window, text="Enter file name", bg='#1a2445', fg='#8392c9', font=('Roboto', 10, 'bold'))
+    label.pack(pady=20)
+
+    entry = tk.Entry(second_window, width=30)
+    entry.pack(pady=5)
+
+    button = tk.Button(second_window, text="Upload and Generate", bg='yellow', fg='#1a2445', font=('Roboto', 14, 'bold'))
+    button.pack(pady=50)
 
     second_window.mainloop()
 
