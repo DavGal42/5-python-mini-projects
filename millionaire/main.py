@@ -10,6 +10,7 @@ the user is displayed in the top players board.
 import tkinter as tk
 import random
 
+
 questions = [
     "What is the capital of France?Paris,Moscow,Yerevan,Berlin",
     "What is 2 + 2?4,3,5,6",
@@ -41,8 +42,10 @@ def get_index():
         Returns: List of numbers
     """
     index = []
+
     while len(index) < 10:
         i = random.randint(0, len(questions) - 1)
+
         if i not in index:
             index.append(i)
 
@@ -58,6 +61,7 @@ def get_questions(ind):
         Returns: List of questions
     """
     quests = []
+
     for i in ind:
         quests.append(questions[i])
 
@@ -73,6 +77,7 @@ def get_questions_dict(quests):
         Returns: Dictionary of questions
     """
     questions_dict = {}
+
     for question in quests:
         q, a = question.split("?")
         questions_dict[q] = a.split(",")
@@ -89,11 +94,13 @@ def on_button_click():
     """
     global name
     name = entry.get()
+
     if name:
         root.destroy()
         open_second_window()
 
     return name
+
 
 def open_second_window():
     """
@@ -150,11 +157,13 @@ def open_second_window():
 
     second_window.mainloop()
 
+
 def check_answer():
     """
         Description: Checks the answer user has input
     """
     global COUNT, CURRENT_INDEX, CURRENT_CORRECT_ANSWER
+    
     answer = answer_entry.get().strip()
 
     if answer.lower() == CURRENT_CORRECT_ANSWER.lower():
@@ -181,6 +190,7 @@ def next_question():
         Description: The function will run until the questions run out
     """
     global CURRENT_CORRECT_ANSWER, CURRENT_INDEX
+
     q, a = questions_list[CURRENT_INDEX]
     current_question = q
     CURRENT_CORRECT_ANSWER = a[0]

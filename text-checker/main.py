@@ -10,7 +10,9 @@ The script takes 2 arguments: “-input” for the input file, “-output” for
 import argparse
 from spellchecker import SpellChecker
 
+
 spell = SpellChecker()
+
 
 def get_fnames():
     """
@@ -54,10 +56,11 @@ def check_words(words):
         Returns: corrected words
     """
     for i, v in enumerate(words):
+        
         if v not in spell:
             correct = list(spell.candidates(v))
             print(f'Wrong word: {words[i]}')
-            print('Your word is not correct. Choose from these:')
+            print('The word is not correct. Choose from these:')
             print(correct)
             choose = input('Choose: ')
             words[i] = choose
