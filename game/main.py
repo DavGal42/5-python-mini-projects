@@ -2,10 +2,10 @@
     Author_LABEL: David Galstyan
     Description: A simple game
 """
+# 109, 86, 138, 149
 
 import random
 import pygame
-
 
 pygame.init()
 
@@ -14,6 +14,7 @@ pygame.display.set_caption('Adventure Game')
 
 ICON = pygame.image.load('imgs/joystick.png')
 pygame.display.set_icon(ICON)
+
 BACKGROUND_IMAGE = pygame.image.load('imgs/background.jpg')
 
 BASKET = pygame.image.load('imgs/basket.png')
@@ -29,10 +30,9 @@ LABEL1 = pygame.font.Font('fonts/Jersey15-Regular.ttf', 50)
 LABEL2 = pygame.font.Font('fonts/Jersey15-Regular.ttf', 30)
 LABEL3 = pygame.font.Font('fonts/Jersey15-Regular.ttf', 20)
 
-LOSE_LABEL = LABEL1.render('You Lose!', False, 'White')
-AUTHOR_LABEL = LABEL3.render('Created by: David Galstyan', False, 'White')
-RESTART_LABEL = LABEL1.render('Play Again', False, (115, 132, 148))
-RESTART_LABEL_RECT = RESTART_LABEL.get_rect(topleft=(40, 300))
+LOSE_LABEL = LABEL1.render('You Lose!', True, 'White')
+RESTART_LABEL = LABEL1.render('Play Again', True, (25, 100, 156))
+RESTART_LABEL_RECT = RESTART_LABEL.get_rect(topleft=(40, 280))
 
 SOUND = pygame.mixer.Sound('sounds/bg-sound.mp3')
 SOUND.play()
@@ -40,24 +40,15 @@ SOUND.play()
 GAME_ACTIVE = True
 SCORE = 0
 
-
 class FallingObject:
     """
-        Description: There we open the file and read it
-
-        Parameters: name of the file
-
-        Returns: content of the file
+        Description: Class of falling objects
     """
-
-
     def __init__(self, image, x, y, speed):
         """
-            Description: There we open the file and read it
+            Description: Initialize function
 
-            Parameters: name of the file
-
-            Returns: content of the file
+            Parameters: Image of objects,their coordinates and speed
         """
         self.image = image
         self.x = x
@@ -65,51 +56,35 @@ class FallingObject:
         self.speed = speed
         self.rect = self.image.get_rect(topleft=(x, y))
 
-
     def update(self):
         """
-            Description: There we open the file and read it
-
-            Parameters: name of the file
-
-            Returns: content of the file
+            Description: Change position of the falling object
         """
         self.y += self.speed
         self.rect.topleft = (self.x, self.y)
 
-
     def draw(self, screen):
         """
-            Description: There we open the file and read it
+            Description: Show an object on the screen
 
-            Parameters: name of the file
-
-            Returns: content of the file
+            Parameters: Main screen
         """
         screen.blit(self.image, (self.x, self.y))
 
-
 falling_objects = []
-
 
 def spawn_falling_object():
     """
         Description: There we open the file and read it
-
-        Parameters: name of the file
-
-        Returns: content of the file
     """
-    if random.randint(0, 1) == 0:
+    if random.randint(0, 2) != 0:
         falling_objects.append(FallingObject(COIN, random.randint(
             0, 253 - COIN.get_width()), 0, FALLING_SPEED))
     else:
         falling_objects.append(FallingObject(BOMB, random.randint(
             0, 253 - BOMB.get_width()), 0, FALLING_SPEED))
 
-
-spawn_event = pygame.USEREVENT + 1
-pygame.time.set_timer(spawn_event, 1500)
+pygame.time.set_timer(pygame.USEREVENT, 1500)
 
 RUNNING = True
 
@@ -125,7 +100,10 @@ while RUNNING:
         if keys[pygame.K_RIGHT]:
             BASKET_X += BASKET_SPEED
 
-        BASKET_X = max(0, min(BASKET_X, 253 - BASKET.get_width()))
+        if BASKET_X < 0:
+            BASKET_X = 0
+        elif BASKET_X > 253 - BASKET.get_width():
+            BASKET_X = 253 - BASKET.get_width()
 
         GAME_SCREEN.blit(BASKET, (BASKET_X, BASKET_Y))
 
@@ -144,17 +122,16 @@ while RUNNING:
             elif obj.y > 450:
                 falling_objects.remove(obj)
 
-        SCORE_TEXT = LABEL2.render(f'Score: {SCORE}', False, 'White')
+        SCORE_TEXT = LABEL2.render(f'Score: {SCORE}', True, 'White')
         GAME_SCREEN.blit(SCORE_TEXT, (10, 10))
 
     else:
-        GAME_SCREEN.fill((87, 88, 89))
-        GAME_SCREEN.blit(AUTHOR_LABEL, (10, 410))
+        GAME_SCREEN.fill((25, 156, 156))
         GAME_SCREEN.blit(LOSE_LABEL, (45, 100))
         GAME_SCREEN.blit(RESTART_LABEL, RESTART_LABEL_RECT)
 
-        FINAL_SCORE_TEXT = LABEL2.render(f'Final Score: {SCORE}', False, 'White')
-        GAME_SCREEN.blit(FINAL_SCORE_TEXT, (60, 150))
+        FINAL_SCORE_TEXT = LABEL2.render(f'Score: {SCORE}', True, 'White')
+        GAME_SCREEN.blit(FINAL_SCORE_TEXT, (80, 150))
 
         MOUSE = pygame.mouse.get_pos()
 
@@ -169,5 +146,5 @@ while RUNNING:
         if event.type == pygame.QUIT:
             RUNNING = False
             pygame.quit()
-        elif event.type == spawn_event and GAME_ACTIVE:
+        elif event.type == pygame.USEREVENT and GAME_ACTIVE:
             spawn_falling_object()

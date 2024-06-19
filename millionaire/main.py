@@ -140,22 +140,26 @@ def open_second_window():
     button_frame = tk.Frame(second_window, bg='#142666')
     button_frame.pack(pady=10)
 
-    help_button1 = tk.Button(button_frame, text='1', bg='#8392c9')
-    help_button1.pack(side=tk.LEFT, padx=5)
-    
-    help_button2 = tk.Button(button_frame, text='2', bg='#8392c9')
-    help_button2.pack(side=tk.LEFT, padx=5)
-
-    help_button3 = tk.Button(button_frame, text='3', bg='#8392c9')
-    help_button3.pack(side=tk.LEFT, padx=5)
-
     questions_list = list(questions_dict.items())
-    random.shuffle(questions_list)
     COUNT = 0
     CURRENT_INDEX = 0
     next_question()
 
     second_window.mainloop()
+
+
+def next_question():
+    """
+        Description: The function will run until the questions run out
+    """
+    global CURRENT_CORRECT_ANSWER, CURRENT_INDEX
+
+    q, a = questions_list[CURRENT_INDEX]
+    current_question = q
+    CURRENT_CORRECT_ANSWER = a[0]
+    random.shuffle(a)
+    question_label.config(text=f"{current_question} \n {', '.join(a)}")
+    answer_entry.delete(0, tk.END)
 
 
 def check_answer():
@@ -185,28 +189,13 @@ def check_answer():
         save_score_to_file(name, user_score)
 
 
-def next_question():
-    """
-        Description: The function will run until the questions run out
-    """
-    global CURRENT_CORRECT_ANSWER, CURRENT_INDEX
-
-    q, a = questions_list[CURRENT_INDEX]
-    current_question = q
-    CURRENT_CORRECT_ANSWER = a[0]
-    random.shuffle(a)
-    question_label.config(text=f"{current_question} \n {', '.join(a)}")
-    answer_entry.delete(0, tk.END)
-
-
 def save_score_to_file(user_name, user_score):
     """
-    Description: Writing and sorting each person's name and score in a file
+        Description: Writing and sorting each person's name and score in a file
     """
-
     try:
         with open("top.txt", "r", encoding="utf-8") as f:
-            scores = [line.strip().split(": ") for line in f]
+            scores = [line.split(": ") for line in f]
             scores = [(name, int(score)) for name, score in scores]
     except FileNotFoundError:
         scores = []
