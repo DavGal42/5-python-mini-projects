@@ -7,37 +7,34 @@
 import speech_recognition as sr
 import os
 
-# Initialize the recognizer
-r = sr.Recognizer()
+def main():
+    recognizer = sr.Recognizer()
 
-
-def recognize_speech_from_microphone():
     with sr.Microphone() as source:
-        print("Listening for the command to open Google Chrome...")
-        r.adjust_for_ambient_noise(source)  # Adjust for ambient noise
-        audio = r.listen(source)
+        print("Say 'Print text(your text)'")
+        
+        # Adjust for ambient noise
+        recognizer.adjust_for_ambient_noise(source)
+
+        # Listen to the input from the user
+        audio = recognizer.listen(source)
 
         try:
-            command = r.recognize_google(audio)
-            print("You said: " + command)
-            return command
+            text = recognizer.recognize_google(audio)
+
+            # Convert recognized text to a print statement
+            if "print" in text.lower():
+                statement = text.replace("print", "").strip()
+                print_code = f'print("{statement}")'
+                print(f"Generated code: {print_code}")
+
+                # Execute the generated print statement
+                exec(print_code)
+            else:
+                print("The text don't contain command print")
+
         except sr.UnknownValueError:
-            print("Sorry, I did not understand that.")
-            return None
-        except sr.RequestError:
-            print("Could not request results; check your network connection.")
-            return None
-
-
-def main():
-    while True:
-        command = recognize_speech_from_microphone()
-        if command and "open Google Chrome" in command.lower():
-            print("Opening Google Chrome...")
-            os.system("start chrome")  # For Windows
-            # os.system("open -a 'Google Chrome'")  # For macOS
-            break
-
+            print("Google Speech Recognition could not understand the audio")
 
 if __name__ == "__main__":
     main()

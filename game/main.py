@@ -2,10 +2,10 @@
     Author_LABEL: David Galstyan
     Description: A simple game
 """
-# 109, 86, 138, 149
 
 import random
 import pygame
+
 
 pygame.init()
 
@@ -77,14 +77,14 @@ def spawn_falling_object():
     """
         Description: There we open the file and read it
     """
-    if random.randint(0, 2) != 0:
+    if random.randint(0, 3) != 0:
         falling_objects.append(FallingObject(COIN, random.randint(
             0, 253 - COIN.get_width()), 0, FALLING_SPEED))
     else:
         falling_objects.append(FallingObject(BOMB, random.randint(
             0, 253 - BOMB.get_width()), 0, FALLING_SPEED))
 
-pygame.time.set_timer(pygame.USEREVENT, 1500)
+pygame.time.set_timer(pygame.USEREVENT, 2000)
 
 RUNNING = True
 
@@ -139,7 +139,6 @@ while RUNNING:
             GAME_ACTIVE = True
             falling_objects.clear()
             SCORE = 0
-
     pygame.display.update()
 
     for event in pygame.event.get():
