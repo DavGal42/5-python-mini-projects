@@ -1,11 +1,11 @@
 """
-Author: David Galstyan
+    Author: David Galstyan
 
-Description: A Desktop app which allows the user to upload a file that contains
-the symbols of the cryptocurrencies. It generates an excel file with the detailed
-information of that cryptocurrencies (Name, Symbol, Current price, Market Cap, Total Volume,
-Price Change for 24 hours, etc.). The user is able to name the excel file from the desktop
-app window.
+    Description: A Desktop app which allows the user to upload a file that contains
+    the symbols of the cryptocurrencies. It generates an excel file with the detailed
+    information of that cryptocurrencies (Name, Symbol, Current price, Market Cap, Total Volume,
+    Price Change for 24 hours, etc.). The user is able to name the excel file from the desktop
+    app window.
 """
 
 import os
@@ -21,7 +21,7 @@ def get_data_from_url(URL):
     """
         Description: Get data of cryptocurrencies
 
-        Parameters: URL of API
+        Arguments: URL of API
     """
     response = requests.get(URL, timeout=10)
     data = response.json()
@@ -32,7 +32,8 @@ def get_data_from_url(URL):
 def get_crypto_list(data):
     """
         Description: Get list of cryptocurrencies
-        Parameters: Data of cryptocurrencies
+
+        Arguments: Data of cryptocurrencies
     """
     ml = []
 
@@ -72,17 +73,17 @@ def write_to_excel(data, file_path):
     """
         Description: Make an excel file
 
-        Parameters: List of cryptocurrencies and file path
+        Arguments: List of cryptocurrencies and file path
     """
     workbook = xlsxwriter.Workbook(file_path)
     worksheet = workbook.add_worksheet()
 
     bold = workbook.add_format({'bold': True})
     headers = ['Name', 'Symbol', 'Current Price', 'Market Cap', 'Total Volume', 'Price 24h']
-    
+
     for col, header in enumerate(headers):
         worksheet.write(0, col, header, bold)
-    
+
     row = 1
     for crypto in (data):
         worksheet.write(row, 0, crypto['name'])
@@ -100,7 +101,7 @@ def download_txt_file(first_window):
     """
         Description: Download a txt file with the names of cryptos and close first window
 
-        Parameters: First window
+        Arguments: First window
     """
     cryptocurrencies = [
         "BTC",
@@ -150,22 +151,22 @@ def download_excel_file(second_window, entry):
     """
         Description: Download txt file with names of cryptos and close first window
 
-        Parameters: Second window and entry place 
+        Arguments: Second window and entry place 
     """
     data = get_data_from_url(URL)
     cryptos = get_crypto_list(data)
-    
+
     file_name = entry.get()
 
     if not file_name.endswith('.xlsx'):
         file_name += '.xlsx'
-    
+
     downloads_folder = os.path.join(os.path.expanduser("~"), "Downloads")
-    
+
     file_path = os.path.join(downloads_folder, file_name)
-    
+
     write_to_excel(cryptos, file_path)
-    
+
     second_window.destroy()
 
 

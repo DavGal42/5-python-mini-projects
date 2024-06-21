@@ -4,37 +4,110 @@
     Description: This is a script which executes voice commands.
 """
 
-import speech_recognition as sr
 import os
+import time
+import speech_recognition
 
-def main():
-    recognizer = sr.Recognizer()
 
-    with sr.Microphone() as source:
-        print("Say 'Print text(your text)'")
-        
-        # Adjust for ambient noise
-        recognizer.adjust_for_ambient_noise(source)
+def set_timer(seconds):
+    """
+        Description: Set N second timer
 
+        Arguments: Seconds
+    """
+    while seconds:
+        print(seconds)
+        time.sleep(1)
+        seconds -= 1
+
+
+def open_file(filename):
+    """
+        Description: Open new file
+
+        Arguments: File name
+    """
+    with open(filename, 'w', encoding='UTF-8'):
+        pass
+
+def create_html_file(filename):
+    """
+        Description: Create HTML file
+
+        Arguments: File name
+    """
+    html_content = """<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+            </head>
+            <body>
+                
+            </body>
+            </html>"""
+    with open(filename, 'w', encoding='UTF-8') as file:
+        file.write(html_content)
+
+
+def start_code():
+    """
+        Description: Function with commands
+    """
+    recognizer = speech_recognition.Recognizer()
+
+    with speech_recognition.Microphone() as source:
+        print("View code and ask any command")
         # Listen to the input from the user
         audio = recognizer.listen(source)
 
-        try:
-            text = recognizer.recognize_google(audio)
+    try:
+        text = recognizer.recognize_google(audio)
+        lower_text = text.lower()
+        print(lower_text)
+        if "print" in lower_text:
+            text = lower_text.replace("print", "").strip()
+            print(text)
 
-            # Convert recognized text to a print statement
-            if "print" in text.lower():
-                statement = text.replace("print", "").strip()
-                print_code = f'print("{statement}")'
-                print(f"Generated code: {print_code}")
+        elif "open google chrome" in lower_text:
+            os.system("start chrome")
 
-                # Execute the generated print statement
-                exec(print_code)
-            else:
-                print("The text don't contain command print")
+        elif "set timer" in lower_text:
+            try:
+                seconds = int(lower_text.split("set timer for ")[1].split(" seconds")[0])
+                set_timer(seconds)
 
-        except sr.UnknownValueError:
-            print("Google Speech Recognition could not understand the audio")
+            except (IndexError, ValueError):
+                print("You should say:'Set timer for n seconds'")
+
+        elif "open file" in lower_text:
+            try:
+                filename = text.split("open file ")[1].strip()
+                open_file(filename)
+            except IndexError:
+                print("You should say:'Open file filename'")
+
+        elif "create html file" in lower_text:
+            try:
+                filename = text.split("create html file ")[1].strip()
+                create_html_file(filename)
+            except IndexError:
+                print("You should say:'Create html file filename'")
+
+        else:
+            print("There is no such command")
+
+    except speech_recognition.UnknownValueError:
+        print("Speech Recognition could not understand the command")
+
+
+def main():
+    """
+        The main function
+    """
+    start_code()
+
 
 if __name__ == "__main__":
     main()

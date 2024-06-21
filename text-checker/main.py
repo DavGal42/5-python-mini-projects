@@ -1,10 +1,10 @@
 """
-Author: David Galstyan
+    Author: David Galstyan
 
-Description: This is a script that checks the orthographic mistakes in the given text.
-It finds the mistakes and tries to correct them with the help of the user.
-It should suggest versions for the correct word, and the user should choose the best one.
-The script takes 2 arguments: “-input” for the input file, “-output” for the output file.
+    Description: This is a script that checks the orthographic mistakes in the given text.
+    It finds the mistakes and tries to correct them with the help of the user.
+    It should suggest versions for the correct word, and the user should choose the best one.
+    The script takes 2 arguments: “-input” for the input file, “-output” for the output file.
 """
 
 import argparse
@@ -16,7 +16,8 @@ spell = SpellChecker()
 
 def get_fnames():
     """
-        Use argparse to get names of the input and output files
+        Description: Use argparse to get names of the input and output files
+
         Returns: input and output files names
     """
     parser = argparse.ArgumentParser()
@@ -31,8 +32,10 @@ def get_fnames():
 
 def get_content(fname):
     """
-        Open the file and read it
-        Parameters: name of the file
+        Description: Open the file and read it
+
+        Arguments: name of the file
+
         Returns: content of the file
     """
     with open(fname, 'r', encoding='utf-8') as f:
@@ -41,8 +44,10 @@ def get_content(fname):
 
 def get_words(cnt):
     """
-        Get each word in the file in a list
-        Parameters: content of the file
+        Description: Get each word in the file in a list
+
+        Arguments: content of the file
+
         Returns: each word of the file
     """
     words = cnt.split()
@@ -51,12 +56,14 @@ def get_words(cnt):
 
 def check_words(words):
     """
-        Correct the wrong words and replace them
-        Parameters: each word of the file
+        Description: Correct the wrong words and replace them
+
+        Arguments: each word of the file
+
         Returns: corrected words
     """
     for i, v in enumerate(words):
-        
+
         if v not in spell:
             correct = list(spell.candidates(v))
             print(f'Wrong word: {words[i]}')
@@ -69,8 +76,10 @@ def check_words(words):
 
 def write_in_file(fname, correct_str):
     """
-        Open the file, join the list of words, and put them into the file
-        Parameters: filename and correct words
+        Description: Open the file, join the list of words, and put them into the file
+        
+        Arguments: filename and correct words
+
         Returns: file with corrected text
     """
     with open(fname, 'w', encoding='utf-8') as f:

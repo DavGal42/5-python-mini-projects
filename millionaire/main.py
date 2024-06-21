@@ -56,7 +56,7 @@ def get_questions(ind):
     """
         Description: Create list of questions using random indexes
 
-        Parameters: indexes (10 random numbers)
+        Arguments: indexes (10 random numbers)
 
         Returns: List of questions
     """
@@ -72,7 +72,7 @@ def get_questions_dict(quests):
     """
         Description: Separate questions from answers and put them into a dict
 
-        Parameters: list of questions
+        Arguments: list of questions
 
         Returns: Dictionary of questions
     """
@@ -133,7 +133,8 @@ def open_second_window():
     result_label.pack(pady=20)
     result_label.configure(bg='#142666')
 
-    score_label = tk.Label(second_window, text="Score: 0", fg='#8392c9', font=('Roboto', 10, 'bold'))
+    score_label = tk.Label(second_window, text="Score: 0", \
+    fg='#8392c9', font=('Roboto', 10, 'bold'))
     score_label.pack(pady=10)
     score_label.configure(bg='#142666')
 
@@ -167,7 +168,7 @@ def check_answer():
         Description: Checks the answer user has input
     """
     global COUNT, CURRENT_INDEX, CURRENT_CORRECT_ANSWER
-    
+
     answer = answer_entry.get().strip()
 
     if answer.lower() == CURRENT_CORRECT_ANSWER.lower():

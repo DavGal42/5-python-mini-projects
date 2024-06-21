@@ -1,5 +1,6 @@
 """
-    Author_LABEL: David Galstyan
+    Author: David Galstyan
+    
     Description: A simple game
 """
 
@@ -48,7 +49,7 @@ class FallingObject:
         """
             Description: Initialize function
 
-            Parameters: Image of objects,their coordinates and speed
+            Arguments: Image of objects,their coordinates and speed
         """
         self.image = image
         self.x = x
@@ -67,7 +68,7 @@ class FallingObject:
         """
             Description: Show an object on the screen
 
-            Parameters: Main screen
+            Arguments: Main screen
         """
         screen.blit(self.image, (self.x, self.y))
 
