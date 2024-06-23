@@ -9,7 +9,7 @@
 """
 
 import os
-import tkinter as tk
+import tkinter
 import xlsxwriter
 import requests
 
@@ -54,12 +54,12 @@ def create_first_window():
     """
         Description: Script of the first window
     """
-    first_window = tk.Tk()
+    first_window = tkinter.Tk()
     first_window.title("Download Tickers")
     first_window.geometry("400x200")
     first_window.configure(bg='#1a2445')
 
-    button = tk.Button(first_window, text="Download", bg='yellow', fg='#1a2445',\
+    button = tkinter.Button(first_window, text="Download", bg='yellow', fg='#1a2445',\
     font=('Roboto', 20, 'bold'), command=lambda: download_txt_file(first_window))
 
     button.pack(expand=True, padx=20, pady=20)
@@ -113,7 +113,7 @@ def download_txt_file(first_window):
         "XRP",
         "DOGE",
         "ADA",
-        "SHIB"
+        "TRON"
     ]
 
     with open("cryptos.txt", 'w', encoding="utf-8") as file:
@@ -128,19 +128,19 @@ def create_second_window():
     """
         Description: Script of the second window
     """
-    second_window = tk.Tk()
+    second_window = tkinter.Tk()
     second_window.title("Download XLSX File")
     second_window.geometry("500x250")
     second_window.configure(bg='#1a2445')
 
-    label = tk.Label(second_window, text="Enter file name", bg='#1a2445',\
+    label = tkinter.Label(second_window, text="Enter file name", bg='#1a2445',\
     fg='#8392c9', font=('Roboto', 10, 'bold'))
     label.pack(pady=20)
 
-    entry = tk.Entry(second_window, width=30)
+    entry = tkinter.Entry(second_window, width=30)
     entry.pack(pady=5)
 
-    button = tk.Button(second_window, text="Download", bg='yellow', fg='#1a2445',\
+    button = tkinter.Button(second_window, text="Download", bg='yellow', fg='#1a2445',\
     font=('Roboto', 20, 'bold'),command=lambda: download_excel_file(second_window, entry))
     button.pack(pady=50)
 
