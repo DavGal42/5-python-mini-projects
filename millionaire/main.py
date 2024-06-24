@@ -1,8 +1,9 @@
 """
-Author: David Galstyan
-Description: The game “Who wants to be a millionaire”.
-The user is able to enter the nickname, then plays the game against 10 random questions.
-At the end of the game, the user is displayed in the top players board.
+    Author: David Galstyan
+
+    Description: The game “Who wants to be a millionaire”.
+    The user is able to enter the nickname, then plays the game against 10 random questions.
+    At the end of the game, the user is displayed in the top players board.
 """
 
 import tkinter
@@ -102,7 +103,7 @@ def on_button_click():
 
 def open_second_window():
     """
-        Description: Functionality of second window
+        Description: Script of second window
     """
     global question_label, answer_entry, result_label, score_label, \
         submit_button, questions_list, COUNT, CURRENT_INDEX
@@ -120,7 +121,7 @@ def open_second_window():
     question_label.pack(pady=20)
     question_label.configure(bg='#142666')
 
-    answer_entry = tkinter.Entry(second_window, width=30)
+    answer_entry = tkinter.Entry(second_window)
     answer_entry.pack(pady=5)
 
     submit_button = tkinter.Button(second_window, text="Submit", command=check_answer)
@@ -135,9 +136,6 @@ def open_second_window():
     fg='#8392c9', font=('Roboto', 10, 'bold'))
     score_label.pack(pady=10)
     score_label.configure(bg='#142666')
-
-    button_frame = tkinter.Frame(second_window, bg='#142666')
-    button_frame.pack(pady=10)
 
     questions_list = list(questions_dict.items())
     COUNT = 0

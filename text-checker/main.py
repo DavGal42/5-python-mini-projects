@@ -10,7 +10,6 @@
 import argparse
 from spellchecker import SpellChecker
 
-
 spell = SpellChecker()
 
 
@@ -18,25 +17,25 @@ def get_fnames():
     """
         Description: Use argparse to get names of the input and output files
 
-        Returns: input and output files names
+        Returns: Input and output files names
     """
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-input', help='Input file name')
-    parser.add_argument('-output', help='Output file name')
+    parser.add_argument('-i', required=True, help='Input file name')
+    parser.add_argument('-o', required=True, help='Output file name')
 
     args = parser.parse_args()
 
-    return args.input, args.output
+    return args.i, args.o
 
 
 def get_content(fname):
     """
         Description: Open the file and read it
 
-        Arguments: name of the file
+        Arguments: Name of the file
 
-        Returns: content of the file
+        Returns: Content of the file
     """
     with open(fname, 'r', encoding='utf-8') as f:
         return f.read()
@@ -46,9 +45,9 @@ def get_words(cnt):
     """
         Description: Get each word in the file in a list
 
-        Arguments: content of the file
+        Arguments: Content of the file
 
-        Returns: each word of the file
+        Returns: Each word of the file
     """
     words = cnt.split()
     return words
@@ -58,15 +57,15 @@ def check_words(words):
     """
         Description: Correct the wrong words and replace them
 
-        Arguments: each word of the file
+        Arguments: Each word of the file
 
-        Returns: corrected words
+        Returns: Corrected words
     """
     for i, v in enumerate(words):
 
         if v not in spell:
             correct = list(spell.candidates(v))
-            print(f'Wrong word: {words[i]}')
+            print(f'Wrong word: {v}')
             print('The word is not correct. Choose from these:')
             print(correct)
             choose = input('Choose: ')
@@ -78,9 +77,9 @@ def write_in_file(fname, correct_str):
     """
         Description: Open the file, join the list of words, and put them into the file
         
-        Arguments: filename and correct words
+        Arguments: Filename and correct words
 
-        Returns: file with corrected text
+        Returns: File with corrected text
     """
     with open(fname, 'w', encoding='utf-8') as f:
         f.write(' '.join(correct_str))

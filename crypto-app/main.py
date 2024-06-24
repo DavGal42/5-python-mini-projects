@@ -62,39 +62,9 @@ def create_first_window():
     button = tkinter.Button(first_window, text="Download", bg='yellow', fg='#1a2445',\
     font=('Roboto', 20, 'bold'), command=lambda: download_txt_file(first_window))
 
-    button.pack(expand=True, padx=20, pady=20)
-
-    first_window.protocol("WM_DELETE_WINDOW", first_window.destroy)
+    button.pack(padx=20, pady=65)
 
     first_window.mainloop()
-
-
-def write_to_excel(data, file_path):
-    """
-        Description: Make an excel file
-
-        Arguments: List of cryptocurrencies and file path
-    """
-    workbook = xlsxwriter.Workbook(file_path)
-    worksheet = workbook.add_worksheet()
-
-    bold = workbook.add_format({'bold': True})
-    headers = ['Name', 'Symbol', 'Current Price', 'Market Cap', 'Total Volume', 'Price 24h']
-
-    for col, header in enumerate(headers):
-        worksheet.write(0, col, header, bold)
-
-    row = 1
-    for crypto in (data):
-        worksheet.write(row, 0, crypto['name'])
-        worksheet.write(row, 1, crypto['symbol'])
-        worksheet.write(row, 2, crypto['current_price'])
-        worksheet.write(row, 3, crypto['market_cap'])
-        worksheet.write(row, 4, crypto['total_volume'])
-        worksheet.write(row, 5, crypto['price_24h'])
-        row += 1
-
-    workbook.close()
 
 
 def download_txt_file(first_window):
@@ -137,7 +107,7 @@ def create_second_window():
     fg='#8392c9', font=('Roboto', 10, 'bold'))
     label.pack(pady=20)
 
-    entry = tkinter.Entry(second_window, width=30)
+    entry = tkinter.Entry(second_window)
     entry.pack(pady=5)
 
     button = tkinter.Button(second_window, text="Download", bg='yellow', fg='#1a2445',\
@@ -168,6 +138,36 @@ def download_excel_file(second_window, entry):
     write_to_excel(cryptos, file_path)
 
     second_window.destroy()
+
+
+def write_to_excel(data, file_path):
+    """
+        Description: Make an excel file
+
+        Arguments: List of cryptocurrencies and file path
+    """
+    workbook = xlsxwriter.Workbook(file_path)
+    worksheet = workbook.add_worksheet()
+
+    bold = workbook.add_format({'bold': True})
+    headers = ['Name', 'Symbol', 'Current Price', 'Market Cap', 'Total Volume', 'Price 24h']
+
+    col = 0
+    for header in headers:
+        worksheet.write(0, col, header, bold)
+        col += 1
+
+    row = 1
+    for crypto in (data):
+        worksheet.write(row, 0, crypto['name'])
+        worksheet.write(row, 1, crypto['symbol'])
+        worksheet.write(row, 2, crypto['current_price'])
+        worksheet.write(row, 3, crypto['market_cap'])
+        worksheet.write(row, 4, crypto['total_volume'])
+        worksheet.write(row, 5, crypto['price_24h'])
+        row += 1
+
+    workbook.close()
 
 
 def main():

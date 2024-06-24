@@ -7,7 +7,6 @@
 import random
 import pygame
 
-
 pygame.init()
 
 GAME_SCREEN = pygame.display.set_mode((253, 450))
@@ -74,7 +73,7 @@ class FallingObject:
 
 falling_objects = []
 
-def spawn_falling_object():
+def make_falling_object():
     """
         Description: There we open the file and read it
     """
@@ -147,4 +146,4 @@ while RUNNING:
             RUNNING = False
             pygame.quit()
         elif event.type == pygame.USEREVENT and GAME_ACTIVE:
-            spawn_falling_object()
+            make_falling_object()

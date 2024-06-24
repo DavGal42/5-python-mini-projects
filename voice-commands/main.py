@@ -58,14 +58,12 @@ def start_code():
     recognizer = speech_recognition.Recognizer()
 
     with speech_recognition.Microphone() as source:
-        print("View code and ask any command")
-        # Listen to the input from the user
+        print("Say something")
         audio = recognizer.listen(source)
 
     try:
         text = recognizer.recognize_google(audio)
         lower_text = text.lower()
-        print(lower_text)
         if "print" in lower_text:
             text = lower_text.replace("print", "").strip()
             print(text)
