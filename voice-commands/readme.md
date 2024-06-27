@@ -8,7 +8,7 @@ Activate venv
 taskn\Scripts\activate
 
 
-Check installed modules
+Create requirements.txt file
 
 pip freeze > requirements.txt
 
