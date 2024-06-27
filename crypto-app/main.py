@@ -1,11 +1,8 @@
 """
-    Author: David Galstyan
-
     Description: A Desktop app which allows the user to upload a file that contains
     the symbols of the cryptocurrencies. It generates an excel file with the detailed
     information of that cryptocurrencies (Name, Symbol, Current price, Market Cap, Total Volume,
-    Price Change for 24 hours, etc.). The user is able to name the excel file from the desktop
-    app window.
+    Price Change for 24 hours, etc.). The user names the excel file from the desktop app window.
 """
 
 import os
@@ -20,7 +17,6 @@ URL = 'https://api.coincap.io/v2/assets'
 def get_data_from_url(URL):
     """
         Description: Get data of cryptocurrencies
-
         Arguments: URL of API
     """
     response = requests.get(URL, timeout=10)
@@ -32,7 +28,6 @@ def get_data_from_url(URL):
 def get_crypto_list(data):
     """
         Description: Get list of cryptocurrencies
-
         Arguments: Data of cryptocurrencies
     """
     ml = []
@@ -70,7 +65,6 @@ def create_first_window():
 def download_txt_file(first_window):
     """
         Description: Download a txt file with the names of cryptos and close first window
-
         Arguments: First window
     """
     cryptocurrencies = [
@@ -120,7 +114,6 @@ def create_second_window():
 def download_excel_file(second_window, entry):
     """
         Description: Download txt file with names of cryptos and close first window
-
         Arguments: Second window and entry place 
     """
     data = get_data_from_url(URL)
@@ -143,7 +136,6 @@ def download_excel_file(second_window, entry):
 def write_to_excel(data, file_path):
     """
         Description: Make an excel file
-
         Arguments: List of cryptocurrencies and file path
     """
     workbook = xlsxwriter.Workbook(file_path)

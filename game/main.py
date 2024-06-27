@@ -1,6 +1,4 @@
 """
-    Author: David Galstyan
-    
     Description: A simple game
 """
 
@@ -34,7 +32,7 @@ LOSE_LABEL = LABEL1.render('You Lose!', True, 'White')
 RESTART_LABEL = LABEL1.render('Play Again', True, (25, 100, 156))
 RESTART_LABEL_RECT = RESTART_LABEL.get_rect(topleft=(40, 280))
 
-SOUND = pygame.mixer.Sound('sounds/bg-sound.mp3')
+SOUND = pygame.mixer.Sound('sound/bg-sound.mp3')
 SOUND.play()
 
 GAME_ACTIVE = True
@@ -47,7 +45,6 @@ class FallingObject:
     def __init__(self, image, x, y, speed):
         """
             Description: Initialize function
-
             Arguments: Image of objects,their coordinates and speed
         """
         self.image = image
@@ -66,7 +63,6 @@ class FallingObject:
     def draw(self, screen):
         """
             Description: Show an object on the screen
-
             Arguments: Main screen
         """
         screen.blit(self.image, (self.x, self.y))
@@ -84,7 +80,8 @@ def make_falling_object():
         falling_objects.append(FallingObject(BOMB, random.randint(
             0, 253 - BOMB.get_width()), 0, FALLING_SPEED))
 
-pygame.time.set_timer(pygame.USEREVENT, 2000)
+falling_event = pygame.USEREVENT
+pygame.time.set_timer(falling_event, 2000)
 
 RUNNING = True
 
@@ -119,9 +116,6 @@ while RUNNING:
                 elif obj.image == COIN:
                     SCORE += 1
 
-            elif obj.y > 450:
-                falling_objects.remove(obj)
-
         SCORE_TEXT = LABEL2.render(f'Score: {SCORE}', True, 'White')
         GAME_SCREEN.blit(SCORE_TEXT, (10, 10))
 
@@ -145,5 +139,6 @@ while RUNNING:
         if event.type == pygame.QUIT:
             RUNNING = False
             pygame.quit()
-        elif event.type == pygame.USEREVENT and GAME_ACTIVE:
-            make_falling_object()
+        elif event.type == pygame.USEREVENT:
+            if GAME_ACTIVE:
+                make_falling_object()

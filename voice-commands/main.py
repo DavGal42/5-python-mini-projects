@@ -1,6 +1,4 @@
 """
-    Author: David Galstyan
-
     Description: This is a script which executes voice commands.
 """
 
@@ -11,11 +9,10 @@ import speech_recognition
 
 def set_timer(seconds):
     """
-        Description: Set N second timer
-
+        Description: Set n second timer
         Arguments: Seconds
     """
-    while seconds:
+    while seconds > 0:
         print(seconds)
         time.sleep(1)
         seconds -= 1
@@ -24,7 +21,6 @@ def set_timer(seconds):
 def open_file(filename):
     """
         Description: Open new file
-
         Arguments: File name
     """
     with open(filename, 'w', encoding='UTF-8'):
@@ -33,22 +29,21 @@ def open_file(filename):
 def create_html_file(filename):
     """
         Description: Create HTML file
-
         Arguments: File name
     """
     html_content = """<!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-            </head>
-            <body>
-                
-            </body>
-            </html>"""
-    with open(filename, 'w', encoding='UTF-8') as file:
-        file.write(html_content)
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>"""
+    with open(filename, 'w', encoding='UTF-8') as f:
+        f.write(html_content)
 
 
 def start_code():
@@ -81,14 +76,14 @@ def start_code():
 
         elif "open file" in lower_text:
             try:
-                filename = text.split("open file ")[1].strip()
+                filename = text.split("open file ")[1]
                 open_file(filename)
             except IndexError:
                 print("You should say:'Open file filename'")
 
         elif "create html file" in lower_text:
             try:
-                filename = text.split("create html file ")[1].strip()
+                filename = lower_text.split("create html file ")[1].strip()
                 create_html_file(filename)
             except IndexError:
                 print("You should say:'Create html file filename'")

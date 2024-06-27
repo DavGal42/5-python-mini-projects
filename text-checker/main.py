@@ -1,6 +1,4 @@
 """
-    Author: David Galstyan
-
     Description: This is a script that checks the orthographic mistakes in the given text.
     It finds the mistakes and tries to correct them with the help of the user.
     It should suggest versions for the correct word, and the user should choose the best one.
@@ -16,7 +14,6 @@ spell = SpellChecker()
 def get_fnames():
     """
         Description: Use argparse to get names of the input and output files
-
         Returns: Input and output files names
     """
     parser = argparse.ArgumentParser()
@@ -32,9 +29,7 @@ def get_fnames():
 def get_content(fname):
     """
         Description: Open the file and read it
-
         Arguments: Name of the file
-
         Returns: Content of the file
     """
     with open(fname, 'r', encoding='utf-8') as f:
@@ -44,9 +39,7 @@ def get_content(fname):
 def get_words(cnt):
     """
         Description: Get each word in the file in a list
-
         Arguments: Content of the file
-
         Returns: Each word of the file
     """
     words = cnt.split()
@@ -56,9 +49,7 @@ def get_words(cnt):
 def check_words(words):
     """
         Description: Correct the wrong words and replace them
-
         Arguments: Each word of the file
-
         Returns: Corrected words
     """
     for i, v in enumerate(words):
@@ -76,9 +67,7 @@ def check_words(words):
 def write_in_file(fname, correct_str):
     """
         Description: Open the file, join the list of words, and put them into the file
-        
         Arguments: Filename and correct words
-
         Returns: File with corrected text
     """
     with open(fname, 'w', encoding='utf-8') as f:

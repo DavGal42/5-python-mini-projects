@@ -1,18 +1,18 @@
 Make virtual environment
 
-<!-- python -m venv task4 -->
+python -m venv task4
 
 
 Activate venv
 
-<!-- taskn\Scripts\activate -->
+taskn\Scripts\activate
 
 
 Check installed modules
 
-<!-- pip freeze > requirements.txt -->
+pip freeze > requirements.txt
 
 
 Deactivate venv
 
-<!-- deactivate -->
+deactivate

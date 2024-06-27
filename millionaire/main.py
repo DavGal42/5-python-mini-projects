@@ -1,9 +1,7 @@
 """
-    Author: David Galstyan
-
     Description: The game “Who wants to be a millionaire”.
-    The user is able to enter the nickname, then plays the game against 10 random questions.
-    At the end of the game, the user is displayed in the top players board.
+    The user enters the nickname, then plays the game against 10 random questions.
+    At the end of the game, the user is displayed on the top players board.
 """
 
 import tkinter
@@ -35,9 +33,8 @@ questions = [
 
 
 def get_index():
-    """`
+    """
         Description: Choose 10 random numbers and put them into a list
-
         Returns: List of numbers
     """
     index = []
@@ -54,9 +51,7 @@ def get_index():
 def get_questions(ind):
     """
         Description: Create list of questions using random indexes
-
         Arguments: indexes (10 random numbers)
-
         Returns: List of questions
     """
     quests = []
@@ -70,9 +65,7 @@ def get_questions(ind):
 def get_questions_dict(quests):
     """
         Description: Separate questions from answers and put them into a dict
-
         Arguments: list of questions
-
         Returns: Dictionary of questions
     """
     questions_dict = {}
@@ -88,7 +81,6 @@ def on_button_click():
     """
         Description: When user enters their name,
         the first window is closed and the second is opened
-
         Returns: name of the user
     """
     global name
@@ -106,7 +98,7 @@ def open_second_window():
         Description: Script of second window
     """
     global question_label, answer_entry, result_label, score_label, \
-        submit_button, questions_list, COUNT, CURRENT_INDEX
+        submit_button, questions_list, count, current_index
 
     index = get_index()
     questions = get_questions(index)
@@ -117,7 +109,8 @@ def open_second_window():
     second_window.title("Who Wants To Be A Millionaire?")
     second_window.configure(bg='#142666')
 
-    question_label = tkinter.Label(second_window, text="", fg='#8392c9', font=('Roboto', 10, 'bold'))
+    question_label = tkinter.Label(second_window, text="",\
+    fg='#8392c9', font=('Roboto', 10, 'bold'))
     question_label.pack(pady=20)
     question_label.configure(bg='#142666')
 
@@ -138,8 +131,8 @@ def open_second_window():
     score_label.configure(bg='#142666')
 
     questions_list = list(questions_dict.items())
-    COUNT = 0
-    CURRENT_INDEX = 0
+    count = 0
+    current_index = 0
     next_question()
 
     second_window.mainloop()
@@ -149,11 +142,11 @@ def next_question():
     """
         Description: The function will run until the questions run out
     """
-    global CURRENT_CORRECT_ANSWER, CURRENT_INDEX
+    global correct_ans, current_index
 
-    q, a = questions_list[CURRENT_INDEX]
+    q, a = questions_list[current_index]
     current_question = q
-    CURRENT_CORRECT_ANSWER = a[0]
+    correct_ans = a[0]
     random.shuffle(a)
     question_label.config(text=f"{current_question} \n {', '.join(a)}")
     answer_entry.delete(0, tkinter.END)
@@ -163,30 +156,30 @@ def check_answer():
     """
         Description: Checks the answer user has input
     """
-    global COUNT, CURRENT_INDEX, CURRENT_CORRECT_ANSWER
+    global count, current_index, correct_ans
 
     answer = answer_entry.get().strip()
 
-    if answer.lower() == CURRENT_CORRECT_ANSWER.lower():
+    if answer.lower() == correct_ans.lower():
         result_label.config(text="Correct!")
-        COUNT += 1
+        count += 1
     else:
-        result_label.config(text=f"Wrong. The correct answer was: {CURRENT_CORRECT_ANSWER}")
+        result_label.config(text=f"Wrong. The correct answer was: {correct_ans}")
 
-    score_label.config(text=f"Score: {COUNT}")
-    CURRENT_INDEX += 1
+    score_label.config(text=f"Score: {count}")
+    current_index += 1
 
-    if CURRENT_INDEX < len(questions_list):
+    if current_index < len(questions_list):
         next_question()
     else:
-        result_label.config(text=f"You answered {COUNT} questions correctly.")
+        result_label.config(text=f"You answered {count} questions correctly.")
         answer_entry.config(state=tkinter.DISABLED)
         submit_button.config(state=tkinter.DISABLED)
-        user_score = COUNT
-        save_score_to_file(name, user_score)
+        score = count
+        save_score_to_file(name, score)
 
 
-def save_score_to_file(user_name, user_score):
+def save_score_to_file(user_name, score):
     """
         Description: Writing and sorting each person's name and score in a file
     """
@@ -197,7 +190,7 @@ def save_score_to_file(user_name, user_score):
     except FileNotFoundError:
         scores = []
 
-    scores.append((user_name, user_score))
+    scores.append((user_name, score))
     scores.sort(key=lambda x: x[1], reverse=True)
 
     with open("top.txt", "w", encoding="utf-8") as f:
