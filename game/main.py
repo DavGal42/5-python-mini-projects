@@ -45,7 +45,7 @@ class FallingObject:
     def __init__(self, image, x, y, speed):
         """
             Description: Initialize function
-            Arguments: Image of objects,their coordinates and speed
+            Arguments: Image of objects, their coordinates, and speed
         """
         self.image = image
         self.x = x
@@ -55,7 +55,7 @@ class FallingObject:
 
     def update(self):
         """
-            Description: Change position of the falling object
+            Description: Change the position of the falling object
         """
         self.y += self.speed
         self.rect.topleft = (self.x, self.y)
@@ -67,18 +67,19 @@ class FallingObject:
         """
         screen.blit(self.image, (self.x, self.y))
 
-falling_objects = []
+FALLING_OBJECT = None
 
 def make_falling_object():
     """
-        Description: There we open the file and read it
+        Description: Create a new falling object
     """
+    global FALLING_OBJECT
     if random.randint(0, 1) != 0:
-        falling_objects.append(FallingObject(COIN, random.randint(
-            0, 253 - COIN.get_width()), 0, FALLING_SPEED))
+        FALLING_OBJECT = FallingObject(COIN, random.randint(
+            0, 253 - COIN.get_width()), 0, FALLING_SPEED)
     else:
-        falling_objects.append(FallingObject(BOMB, random.randint(
-            0, 253 - BOMB.get_width()), 0, FALLING_SPEED))
+        FALLING_OBJECT = FallingObject(BOMB, random.randint(
+            0, 253 - BOMB.get_width()), 0, FALLING_SPEED)
 
 falling_event = pygame.USEREVENT
 pygame.time.set_timer(falling_event, 2000)
@@ -104,19 +105,19 @@ while RUNNING:
 
         GAME_SCREEN.blit(BASKET, (BASKET_X, BASKET_Y))
 
-        for obj in falling_objects[:]:
-            if obj.y > 450:
-                falling_objects.remove(obj)
-            obj.update()
-            obj.draw(GAME_SCREEN)
+        if FALLING_OBJECT:
+            if FALLING_OBJECT.y > 450:
+                FALLING_OBJECT = None
+            else:
+                FALLING_OBJECT.update()
+                FALLING_OBJECT.draw(GAME_SCREEN)
 
-            if obj.rect.colliderect(BASKET.get_rect(topleft=(BASKET_X, BASKET_Y))):
-                falling_objects.remove(obj)
-
-                if obj.image == BOMB:
-                    GAME_ACTIVE = False
-                elif obj.image == COIN:
-                    SCORE += 1
+                if FALLING_OBJECT.rect.colliderect(BASKET.get_rect(topleft=(BASKET_X, BASKET_Y))):
+                    if FALLING_OBJECT.image == BOMB:
+                        GAME_ACTIVE = False
+                    elif FALLING_OBJECT.image == COIN:
+                        SCORE += 1
+                    FALLING_OBJECT = None
 
         SCORE_TEXT = LABEL2.render(f'Score: {SCORE}', True, 'White')
         GAME_SCREEN.blit(SCORE_TEXT, (10, 10))
@@ -133,7 +134,7 @@ while RUNNING:
 
         if RESTART_LABEL_RECT.collidepoint(MOUSE) and pygame.mouse.get_pressed()[0]:
             GAME_ACTIVE = True
-            falling_objects.clear()
+            FALLING_OBJECT = None
             SCORE = 0
     pygame.display.update()
 

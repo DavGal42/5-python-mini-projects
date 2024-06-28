@@ -2,6 +2,7 @@
     Description: The game “Who wants to be a millionaire”.
     The user enters the nickname, then plays the game against 10 random questions.
     At the end of the game, the user is displayed on the top players board.
+    Author: David Galstyan
 """
 
 import tkinter
@@ -201,7 +202,7 @@ def save_score_to_file(user_name, score):
 root = tkinter.Tk()
 root.title("Name Input")
 root.configure(bg='#142666')
-root.geometry('250x150')
+root.geometry('250x150+500+300')
 
 frame = tkinter.Frame(root)
 frame.pack(pady=30, padx=30)

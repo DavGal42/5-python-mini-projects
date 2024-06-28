@@ -3,7 +3,10 @@
     It finds the mistakes and tries to correct them with the help of the user.
     It should suggest versions for the correct word, and the user should choose the best one.
     The script takes 2 arguments: “-input” for the input file, “-output” for the output file.
+    Author: David Galstyan
 """
+
+#Run Code - python .\main.py -i input.txt -o output.txt
 
 import argparse
 from spellchecker import SpellChecker

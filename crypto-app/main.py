@@ -3,6 +3,7 @@
     the symbols of the cryptocurrencies. It generates an excel file with the detailed
     information of that cryptocurrencies (Name, Symbol, Current price, Market Cap, Total Volume,
     Price Change for 24 hours, etc.). The user names the excel file from the desktop app window.
+    Author: David Galstyan
 """
 
 import os

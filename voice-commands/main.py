@@ -1,5 +1,6 @@
 """
     Description: This is a script which executes voice commands.
+    Author: David Galstyan
 """
 
 import os
