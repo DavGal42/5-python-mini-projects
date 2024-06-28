@@ -73,7 +73,7 @@ def make_falling_object():
     """
         Description: There we open the file and read it
     """
-    if random.randint(0, 3) != 0:
+    if random.randint(0, 1) != 0:
         falling_objects.append(FallingObject(COIN, random.randint(
             0, 253 - COIN.get_width()), 0, FALLING_SPEED))
     else:
@@ -105,6 +105,8 @@ while RUNNING:
         GAME_SCREEN.blit(BASKET, (BASKET_X, BASKET_Y))
 
         for obj in falling_objects[:]:
+            if obj.y > 450:
+                falling_objects.remove(obj)
             obj.update()
             obj.draw(GAME_SCREEN)
 
