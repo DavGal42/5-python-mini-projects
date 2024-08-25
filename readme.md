@@ -8,7 +8,7 @@
 
 **Description: A simple application to fetch and save cryptocurrency prices.**
 
-**Technologies: tkinter, xlsxwriter, requests**
+**Technologies: os, tkinter, xlsxwriter, requests**
 
 **Features: Fetches real-time prices of cryptocurrencies and writes them to an Excel file.**
 
@@ -16,7 +16,7 @@
 
 **Description: A basic game developed using Pygame.**
 
-**Technologies: pygame**
+**Technologies: pygame, random**
 
 **Features: A simple, interactive game for entertainment and learning purposes.**
 
@@ -24,7 +24,7 @@
 
 **Description: A "Who Wants to Be a Millionaire" style game.**
 
-**Technologies: tkinter**
+**Technologies: tkinter, random**
 
 **Features: An interactive quiz game with questions and answers, simulating the popular TV show.**
 
@@ -32,7 +32,7 @@
 
 **Description: An application to check spelling in user input.**
 
-**Technologies: spellchecker**
+**Technologies: argparse, spellchecker**
 
 **Features: Checks and suggests corrections for misspelled words in user-provided text.**
 
@@ -40,7 +40,7 @@
 
 **Description: An app that executes commands based on voice input.**
 
-**Technologies: speech_recognition**
+**Technologies: os, time, speech_recognition**
 
 **Features: Recognizes spoken commands and performs corresponding actions.**
 
