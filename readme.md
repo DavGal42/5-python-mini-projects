@@ -1,10 +1,10 @@
-# 🐍 5 Python Mini-Projects 🚀
+# <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/Snake.webp" alt="Snake" width="50" height="50" /> 5 Python Mini-Projects <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Travel%20and%20Places/Rocket.webp" alt="Rocket" width="50" height="50" />
 **Welcome to my repository showcasing 5 Python mini-projects! Each project demonstrates different aspects of Python programming and its libraries. Here’s a quick overview of what you'll find:**
 
 ---
 
 ## Projects
-### [Crypto App](crypto-app) 💰📈
+### [Crypto App](crypto-app) <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Objects/Chart%20Increasing.webp" alt="Chart Increasing" width="30" height="30" />
 
 **Description: A simple application to fetch and save cryptocurrency prices.**
 
@@ -12,7 +12,7 @@
 
 **Features: Fetches real-time prices of cryptocurrencies and writes them to an Excel file.**
 
-### [Game](game) 🎮
+### [Game](game) <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Activity/Video%20Game.webp" alt="Video Game" width="30" height="30" />
 
 **Description: A basic game developed using Pygame.**
 
@@ -20,7 +20,7 @@
 
 **Features: A simple, interactive game for entertainment and learning purposes.**
 
-### [Millionaire](millionaire) 💸
+### [Millionaire](millionaire) <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Objects/Money%20Bag.webp" alt="Money Bag" width="30" height="30" />
 
 **Description: A "Who Wants to Be a Millionaire" style game.**
 
@@ -28,7 +28,7 @@
 
 **Features: An interactive quiz game with questions and answers, simulating the popular TV show.**
 
-### [Text Checker](text-checker) 📚🔍
+### [Text Checker](text-checker) <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Objects/File%20Folder.webp" alt="File Folder" width="30" height="30" />
 
 **Description: An application to check spelling in user input.**
 
@@ -36,7 +36,7 @@
 
 **Features: Checks and suggests corrections for misspelled words in user-provided text.**
 
-### [Voice Commands](voice-commands) 🎙️🗣️
+### [Voice Commands](voice-commands) <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Objects/Microphone.webp" alt="Microphone" width="30" height="30" />
 
 **Description: An app that executes commands based on voice input.**
 
