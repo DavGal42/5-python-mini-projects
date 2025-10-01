@@ -1,4 +1,4 @@
-## Installation Guide
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Travel%20and%20Places/Rocket.webp" alt="Rocket" width="30" height="30" /> Installation Guide
 
 ### 1. Create Virtual Environment
 
