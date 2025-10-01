@@ -6,8 +6,6 @@
     Author: David Galstyan
 """
 
-#Run Code - python .\main.py -i input.txt -o output.txt
-
 import argparse
 from spellchecker import SpellChecker
 

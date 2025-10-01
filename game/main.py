@@ -1,5 +1,6 @@
 """
     Description: A simple game
+    Author: David Galstyan
 """
 
 import random
