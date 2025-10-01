@@ -30,13 +30,61 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 4. Run the Script
+### 4. Adjust Code for Linux Users
+
+If you are running the script on Linux, go to line 68 in main.py and replace:
+```python
+os.system("start chrome")
+```
+
+with:
+```python
+os.system("google-chrome &")
+```
+
+### 5. Run the Script
 
 ```bash
 python .\main.py
 ```
 
-### 5. Deactivate Virtual Environment
+🎙️ Available Voice Commands
+
+When the script is running and you see Say something, you can use these voice commands:
+
+Open Google Chrome
+→ Launches Chrome browser.
+(Linux users must adjust the code as explained above).
+
+Set timer for N seconds
+Example:
+
+Set timer for 10 seconds
+
+
+→ Starts a countdown timer.
+
+Open file filename
+Example:
+
+Open file notes.txt
+
+
+→ Opens the specified file if it exists.
+
+Create html file filename
+Example:
+
+Create html file index.html
+
+
+→ Creates a new HTML file with the given name.
+
+If the command is not recognized, the program will print:
+
+There is no such command
+
+### 6. Deactivate Virtual Environment
 
 ```bash
 deactivate

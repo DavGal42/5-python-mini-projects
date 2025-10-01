@@ -65,7 +65,7 @@ def start_code():
             print(text)
 
         elif "open google chrome" in lower_text:
-            os.system("start chrome")
+            os.system("start chrome") # If you are running the script on Linux, replace it with os.system("google-chrome &")
 
         elif "set timer" in lower_text:
             try:
