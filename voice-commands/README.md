@@ -1,4 +1,4 @@
-## Installation Guide
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Travel%20and%20Places/Rocket.webp" alt="Rocket" width="30" height="30" /> Installation Guide
 
 ### 1. Create Virtual Environment
 
@@ -48,41 +48,38 @@ os.system("google-chrome &")
 python .\main.py
 ```
 
-🎙️ Available Voice Commands
+#### **<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Objects/Microphone.webp" alt="Microphone" width="30" height="30" /> Available Voice Commands**
 
 When the script is running and you see Say something, you can use these voice commands:
 
-Open Google Chrome
-→ Launches Chrome browser.
-(Linux users must adjust the code as explained above).
+- Open Google Chrome
+    
+  → Launches Chrome browser.
+  (Linux users must adjust the code as explained above).
 
-Set timer for N seconds
-Example:
+- Set timer for N seconds
+    
+  Example:
+  Set timer for 10 seconds
+  
+  → Starts a countdown timer.
 
-Set timer for 10 seconds
+- Open file filename
+  
+  Example:
+  Open file notes.txt
+  
+  → Opens the specified file if it exists.
 
+- Create html file filename
+    
+  Example:
+  Create html file index.html
 
-→ Starts a countdown timer.
+  → Creates a new HTML file with the given name.
 
-Open file filename
-Example:
-
-Open file notes.txt
-
-
-→ Opens the specified file if it exists.
-
-Create html file filename
-Example:
-
-Create html file index.html
-
-
-→ Creates a new HTML file with the given name.
-
-If the command is not recognized, the program will print:
-
-There is no such command
+**If the command is not recognized, the program will print:
+There is no such command**
 
 ### 6. Deactivate Virtual Environment
 
